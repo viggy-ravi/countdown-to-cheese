@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cheese Countdown</title>
+  <style>
+    body {
+      background-color: #fff8dc;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      color: #d2691e;
+    }
+
+    h1 {
+      font-size: 3em;
+    }
+
+    #countdown {
+      font-size: 2.5em;
+      margin-top: 20px;
+      background: #fff0b3;
+      padding: 20px;
+      display: inline-block;
+      border: 5px dashed #ffa500;
+      border-radius: 20px;
+      box-shadow: 5px 5px 15px #d2b48c;
+    }
+
+    .cheese-emoji {
+      font-size: 4em;
+      margin: 10px;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 1.2em;
+      color: #a0522d;
+    }
+  </style>
+</head>
+<body>
+  <div class="cheese-emoji">🧀</div>
+  <h1>Countdown to Cheese O'Clock!</h1>
+  <div id="countdown">Loading cheese timer...</div>
+  <div class="cheese-emoji">🧀</div>
+
+  <div class="footer">Mark your calendars: August 28, 2024 @ 4:45 PM CST</div>
+
+  <script>
+    // Target: August 28, 2024 at 4:45 PM Central Time (CDT is UTC-5 in summer)
+    const targetDate = new Date("2025-08-28T21:45:00Z");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "🧀 It's Cheese Time! 🧀";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("countdown").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown(); // Initial call
+    setInterval(updateCountdown, 1000); // Update every second
+  </script>
+</body>
+</html>
